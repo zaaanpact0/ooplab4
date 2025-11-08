@@ -10,21 +10,18 @@ else()
     add_compile_options(-Wall -Wextra -pedantic)
 endif()
 
-# Create library with all source files
+
 add_library(${PROJECT_NAME}_lib
     src/array.cpp
     src/figure.cpp
     src/point.cpp
 )
 
-# Include directories
 target_include_directories(${PROJECT_NAME}_lib PUBLIC includes)
 
-# Main executable
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}_lib)
 
-# Google Test
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -33,11 +30,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# Tests executable
 add_executable(${PROJECT_NAME}_tests tests/tests.cpp)
 target_link_libraries(${PROJECT_NAME}_tests PRIVATE ${PROJECT_NAME}_lib gtest_main)
 
-# Math library for Linux
 if(UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE m)
     target_link_libraries(${PROJECT_NAME}_tests PRIVATE m)
@@ -45,4 +40,5 @@ if(UNIX)
 endif()
 
 enable_testing()
+
 add_test(NAME ${PROJECT_NAME}_tests COMMAND ${PROJECT_NAME}_tests)
