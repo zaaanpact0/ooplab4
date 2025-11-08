@@ -36,10 +36,10 @@ public:
     T* end() { return data.get() + size_; }
     const T* begin() const { return data.get(); }
     const T* end() const { return data.get() + size_; }
-    
-    // Special methods for figures
+
     double totalArea() const;
     void printAll() const;
 };
+
 
 #endif
