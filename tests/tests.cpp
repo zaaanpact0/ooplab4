@@ -8,7 +8,6 @@
 #include <memory>
 #include <sstream>
 
-// Test Point class
 TEST(PointTest, BasicOperations) {
     Point<int> p1(1, 2);
     Point<int> p2(1, 2);
@@ -33,7 +32,6 @@ TEST(PointTest, ArithmeticOperations) {
     EXPECT_DOUBLE_EQ(div.y(), 2.0);
 }
 
-// Test Rhombus class
 TEST(RhombusTest, AreaCalculation) {
     Rhombus<double> rhombus({
         Point<double>(0, 1),
@@ -69,7 +67,6 @@ TEST(RhombusTest, StreamOperations) {
     EXPECT_DOUBLE_EQ(center.y(), 0.0);
 }
 
-// Test Pentagon class
 TEST(PentagonTest, AreaCalculation) {
     Pentagon<double> pentagon({
         Point<double>(0, 1),
@@ -96,7 +93,6 @@ TEST(PentagonTest, GeometricCenter) {
     EXPECT_NEAR(center.y(), 0.0, 0.001);
 }
 
-// Test Hexagon class
 TEST(HexagonTest, AreaCalculation) {
     Hexagon<double> hexagon({
         Point<double>(1, 0),
@@ -110,7 +106,6 @@ TEST(HexagonTest, AreaCalculation) {
     EXPECT_NEAR(hexagon.area(), 2.598, 0.01);
 }
 
-// Test Array class
 TEST(ArrayTest, BasicOperations) {
     Array<std::shared_ptr<Figure<double>>> figures;
     
@@ -161,17 +156,14 @@ TEST(ArrayTest, CopyAndMove) {
     
     figures1.push_back(rhombus);
     
-    // Test copy constructor
     Array<std::shared_ptr<Figure<double>>> figures2(figures1);
     EXPECT_EQ(figures2.size(), 1);
     
-    // Test move constructor
     Array<std::shared_ptr<Figure<double>>> figures3(std::move(figures1));
     EXPECT_EQ(figures3.size(), 1);
     EXPECT_EQ(figures1.size(), 0);
 }
 
-// Test operator double() conversion
 TEST(FigureTest, DoubleConversion) {
     Rhombus<double> rhombus({
         Point<double>(0, 1),
@@ -184,7 +176,6 @@ TEST(FigureTest, DoubleConversion) {
     EXPECT_NEAR(area, 2.0, 0.001);
 }
 
-// Test comparison operators
 TEST(FigureTest, Comparison) {
     Rhombus<double> rhombus1({
         Point<double>(0, 1),
@@ -214,4 +205,5 @@ TEST(FigureTest, Comparison) {
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
+
 }
